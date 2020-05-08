@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from './Router';
+import Header from './Header';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Layout from './Layout';
 
 const theme = createMuiTheme({
   palette: {
@@ -17,7 +18,6 @@ const theme = createMuiTheme({
 
 export default () => (
   <div>
-    <h1>Hi Guys.</h1>
     <ThemeProvider theme={theme}>
       <Header />
     </ThemeProvider>
