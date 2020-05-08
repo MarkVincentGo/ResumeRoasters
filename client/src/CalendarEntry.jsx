@@ -26,7 +26,13 @@ const CalendarEntry = ({ date }) => {
 
   return (
     <Grid item xs={'auto'} spacing={1}>
-      <Paper className={state ? classes.paperNotSelected : classes.paperSelected} spacing={2} onMouseEnter={() => setState(true)} onMouseLeave={() => setState(false)}>{date}</Paper>
+      <Paper 
+        className={state ? classes.paperNotSelected : classes.paperSelected} 
+        spacing={2} 
+        onMouseEnter={() => setState(true)} 
+        onMouseLeave={() => setState(false)}>
+          {date}
+        </Paper>
     </Grid>
   )
 }

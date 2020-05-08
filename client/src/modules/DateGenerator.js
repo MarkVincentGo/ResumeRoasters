@@ -5,6 +5,7 @@ export default (year, month) => {
   let date = currentDate.getDate();
   // max days of each month, ternary is for February
   const maxMonthDays = [31, year % 4 === 0 ? 29 : 28 , 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   
   // the month as a whole, put weeks in here
   const MonthMatrix = [];
@@ -30,5 +31,9 @@ export default (year, month) => {
     MonthMatrix.push(weekArray)
     if (date === k + 1) break;
   }
-  return MonthMatrix;
+  return {
+    calendar: MonthMatrix,
+    currentMonth: months[month],
+    currentYear: year,
+  }
 }
