@@ -20,17 +20,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CalendarEntry = ({ date }) => {
+const CalendarEntry = ({ date, clickFn }) => {
   const classes = useStyles()
   const [state, setState] = useState(false);
 
   return (
-    <Grid item xs={'auto'} spacing={1}>
+    <Grid item xs={'auto'}>
       <Paper 
-        className={state ? classes.paperNotSelected : classes.paperSelected} 
-        spacing={2} 
+        className={state ? classes.paperNotSelected : classes.paperSelected}  
         onMouseEnter={() => setState(true)} 
-        onMouseLeave={() => setState(false)}>
+        onMouseLeave={() => setState(false)}
+        square={state ? false : true}
+        elevation={1}
+        onClick={clickFn}
+        >
           {date}
         </Paper>
     </Grid>

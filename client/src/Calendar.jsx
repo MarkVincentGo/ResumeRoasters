@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import CalendarEntry from './CalendarEntry';
 import DateGenerator from './modules/DateGenerator';
 import { Button } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,13 +16,41 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     marginTop: 50,
   },
+  title: {
+    margin: '0 auto',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  month: {
+    fontWeight: 'bold',
+    fontSize: 24,
+  },
+  modal: {
+    width: 300,
+    height: 400,
+    backgroundColor: 'white',
+  }
 }))
+
+function getModalStyle() {
+  const top = 5
+  const left = 5
+
+  return {
+    margin: 'auto',
+  };
+}
+
 
 
 const Calendar = () => {
   const currentDate = new Date();
   const [year, setYear] = useState(currentDate.getFullYear());
   const [month, setMonth] = useState(currentDate.getMonth());
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalStyle] = useState(getModalStyle)
+  const classes = useStyles();
   let MonthCalendar = DateGenerator(year, month);
 
   const backMonth = () => {
@@ -42,6 +71,23 @@ const Calendar = () => {
     }
   }
 
+  const clickModal = () => {
+    setModalOpen(true)
+  }
+
+  const close = () => {
+    setModalOpen(false)
+  }
+
+  const body = (
+    <div style={modalStyle} className={classes.modal}>
+      <h2 id="simple-modal-title">Text in a modal</h2>
+      <p id="simple-modal-description">
+        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+      </p>
+    </div>
+  );
+
   function FormRow({ week }) {
     return (
       <React.Fragment>
@@ -52,7 +98,7 @@ const Calendar = () => {
               )
           } else {
             return (
-              <CalendarEntry date={dayOfWeek}/>
+              <CalendarEntry date={dayOfWeek} clickFn={clickModal}/>
             )
           }
         })}
@@ -60,17 +106,22 @@ const Calendar = () => {
     );
   }
 
-  const classes = useStyles();
   return (
     <Typography component="div">
+      <Modal open={modalOpen} onClose={close}>
+        {body}
+      </Modal>
       <Container maxWidth="lg" className={classes.root}>
-        <button onClick={backMonth}>back</button>
-        {MonthCalendar.currentMonth}
-        {year}
-        <button onClick={forwardMonth}>forward</button>
-      <Grid container spacing={1}>
+        <div className={classes.title}>
+          <Button onClick={backMonth} variant="contained" color="primary">back</Button>
+          <div className={classes.month}>
+            {MonthCalendar.currentMonth}{' '}{year}
+          </div>
+          <Button onClick={forwardMonth} variant="contained" color="primary">forward</Button>
+        </div>
+      <Grid container spacing={0}>
         {MonthCalendar.calendar.map((week) => (
-          <Grid container justify="center" item xs={12} spacing={1}>
+          <Grid container justify="center" item xs={12} spacing={0}>
             <FormRow week={week}/>
           </Grid>
         ))}
