@@ -11,30 +11,51 @@ const useStyles = makeStyles((theme) => ({
     height: 30,
     width: 30,
   },
-  paperSelected  : {
+  paperSelected: {
     padding: theme.spacing(5),
     textAlign: 'center',
     backgroundColor: theme.palette.secondary,
     height: 30,
     width: 30,
   },
+  pastDate: {
+    backgroundColor: '#c1c1c1',
+    color: 'gray'
+  },
+  futureDate: {
+    color: 'black'
+  }
 }))
 
-const CalendarEntry = ({ date, clickFn }) => {
+const CalendarEntry = ({ date, clickFn, today }) => {
   const classes = useStyles()
   const [state, setState] = useState(false);
+  let dayHasPassed = false;
+  if (date) {
+    const { year, month, dayOfWeek } = date
+    const thisDate = new Date(year, month, dayOfWeek)
+    console.log(thisDate, today)
+    if (thisDate < today) {
+      dayHasPassed = true;
+    }
+  }
 
   return (
     <Grid item xs={'auto'}>
       <Paper 
-        className={state ? classes.paperNotSelected : classes.paperSelected}  
-        onMouseEnter={() => setState(true)} 
+        className={[state ? classes.paperNotSelected : classes.paperSelected, 
+          dayHasPassed ? classes.pastDate : classes.futureDate]}  
+        onMouseEnter={() => {
+          if (!dayHasPassed) {
+            setState(true)
+          }
+        }} 
         onMouseLeave={() => setState(false)}
         square={state ? false : true}
         elevation={1}
         onClick={clickFn}
         >
-          {date}
+          {date ? date.dayOfWeek : ''}
         </Paper>
     </Grid>
   )

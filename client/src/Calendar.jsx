@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   modal: {
     width: 300,
     height: 400,
-    backgroundColor: 'white',
+    backgroundColor: '#e1e1e1',
   }
 }))
 
@@ -55,7 +55,7 @@ const Calendar = () => {
 
   const backMonth = () => {
     if (month === 0) {
-      setMonth(12);
+      setMonth(11);
       setYear(year - 1);
     } else {
       setMonth(month - 1);
@@ -98,7 +98,11 @@ const Calendar = () => {
               )
           } else {
             return (
-              <CalendarEntry date={dayOfWeek} clickFn={clickModal}/>
+              <CalendarEntry
+                date={{year, month, dayOfWeek}}
+                clickFn={clickModal}
+                today={currentDate}
+              />
             )
           }
         })}
