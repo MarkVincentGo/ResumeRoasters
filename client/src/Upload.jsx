@@ -38,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
 const fui = {
   position: 'absolute',
   top: 0,
-  right: 0,
+  left: 0,
   cursor: 'pointer',
   opacity: 0,
   filter: 'alpha(opacity=1)',
   fontSize: 300, 
-  height: 70,
-  width: 116,
+  height: '100%',
+  width: '100%',
   border: '1px solid black'
 }
 

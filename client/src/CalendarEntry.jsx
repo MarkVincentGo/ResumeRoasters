@@ -4,17 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  paperNotSelected  : {
+  generalEntry: {
     padding: theme.spacing(5),
     textAlign: 'center',
-    backgroundColor: theme.palette.primary.main,
-    height: 30,
-    width: 30,
-  },
-  paperSelected: {
-    padding: theme.spacing(5),
-    textAlign: 'center',
-    backgroundColor: theme.palette.secondary,
+    backgroundColor: 'white',
     height: 30,
     width: 30,
   },
@@ -23,18 +16,21 @@ const useStyles = makeStyles((theme) => ({
     color: 'gray'
   },
   futureDate: {
-    color: 'black'
+    color: 'black',
+    backgroundColor: theme.palette.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    }
   }
 }))
 
 const CalendarEntry = ({ date, clickFn, today }) => {
   const classes = useStyles()
-  const [state, setState] = useState(false);
   let dayHasPassed = false;
   if (date) {
-    const { year, month, dayOfWeek } = date
-    const thisDate = new Date(year, month, dayOfWeek)
-    console.log(thisDate, today)
+    const { year, month, dayOfWeek } = date;
+    const thisDate = new Date(year, month, dayOfWeek);
+    thisDate.setDate(thisDate.getDate() + 1)
     if (thisDate < today) {
       dayHasPassed = true;
     }
@@ -43,17 +39,10 @@ const CalendarEntry = ({ date, clickFn, today }) => {
   return (
     <Grid item xs={'auto'}>
       <Paper 
-        className={[state ? classes.paperNotSelected : classes.paperSelected, 
-          dayHasPassed ? classes.pastDate : classes.futureDate]}  
-        onMouseEnter={() => {
-          if (!dayHasPassed) {
-            setState(true)
-          }
-        }} 
-        onMouseLeave={() => setState(false)}
-        square={state ? false : true}
+        className={[classes.generalEntry, dayHasPassed || !date ? classes.pastDate : classes.futureDate]}  
         elevation={1}
-        onClick={clickFn}
+        square
+        onClick={dayHasPassed ? null : clickFn}
         >
           {date ? date.dayOfWeek : ''}
         </Paper>

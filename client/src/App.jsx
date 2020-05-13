@@ -6,10 +6,11 @@ import Layout from './Layout';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#d84315',
+      main: '#df6843',
     },
     secondary: {
-      main: '#f4511e',
+      main: '#e58668',
+      grey: '#e1e1e1'
     },
   },
 });

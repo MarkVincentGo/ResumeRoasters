@@ -18,7 +18,7 @@ import { Link as RouterLink,  BrowserRouter as Router, Switch, Route } from 'rea
 
 import TeamPage from './TeamPage';
 import Upload from './Upload';
-import Calendar from './Calendar';
+import Schedule from './Schedule';
 import Home from './Home';
 
 
@@ -100,7 +100,7 @@ export default function ScrollableTabsButtonForce() {
               <Upload />
           </Route>
           <Route exact path="/">
-            <Calendar />
+            <Schedule />
           </Route>
           <Route exact path="/team">
             <TeamPage />
