@@ -10,16 +10,30 @@ const style = {
 }
 
 export default class Schedule extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dateSelected: 'Please Select Date',
+      timeSelected: 'Please Select Time',
+    }
+    this.changeScheduledTime = this.changeScheduledTime.bind(this);
+  }
+
+  changeScheduledTime(dateSelected, timeSelected) {
+    this.setState({ dateSelected, timeSelected });
+  }
+
   render() {
+    const { dateSelected, timeSelected } = this.state;
     return (
       <div style={style.container}>
-        <Calendar />
+        <Calendar changeTime={this.changeScheduledTime} />
         <div style={{
           height: 500,
           width: 400,
           border: '1px solid black',
           marginTop: 120,
-        }}></div>
+        }}>{dateSelected} {timeSelected}</div>
       </div>
     )
   }

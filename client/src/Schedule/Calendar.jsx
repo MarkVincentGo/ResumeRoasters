@@ -34,11 +34,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Calendar = () => {
+const Calendar = ({ changeTime }) => {
   const currentDate = new Date();
   const [year, setYear] = useState(currentDate.getFullYear());
   const [month, setMonth] = useState(currentDate.getMonth());
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [day, setDay] = useState(0)
   const classes = useStyles();
   let MonthCalendar = DateGenerator(year, month);
 
@@ -60,8 +61,9 @@ const Calendar = () => {
     }
   }
 
-  const clickModal = () => {
+  const clickModal = (dayOfWeek) => {
     setModalOpen(true)
+    setDay(dayOfWeek)
   }
 
   const close = () => {
@@ -82,7 +84,7 @@ const Calendar = () => {
             return (
               <CalendarEntry
                 date={{year, month, dayOfWeek}}
-                clickFn={clickModal}
+                clickFn={() => clickModal(dayOfWeek)}
                 today={currentDate}
               />
             )
@@ -94,9 +96,8 @@ const Calendar = () => {
 
   return (
     <Typography component="div">
-
       <Modal open={modalOpen} onClose={close}>
-        <CalendarChooseTime />
+        <CalendarChooseTime changeTime={changeTime} date={{ month, year, day }} modalFn={setModalOpen}/>
       </Modal>
 
       <Container maxWidth="md" className={classes.root}>

@@ -49,8 +49,14 @@ const useStyles = makeStyles(theme => ({
 
 const times = ['9:00am', '10:00am', '11:00am', '12:00am', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
 
-const CalendarChooseTime = () => {
+const CalendarChooseTime = ({ changeTime, date, modalFn}) => {
   const classes = useStyles();
+
+  const handleClickTime = (time) => {
+    changeTime(`${date.month} ${date.day}, ${date.year}`, time);
+    modalFn(false)
+  }
+
   return (
     <Typography component="div">
       <Container className={classes.modal}>
@@ -62,7 +68,7 @@ const CalendarChooseTime = () => {
         <Container className={classes.title}>Select Available Time Below</Container>
         <Container className={classes.form}>
           {times.map(time => (
-            <Container className={classes.timeBox}>{time}</Container>
+            <Container className={classes.timeBox} onClick={() => handleClickTime(time)}>{time}</Container>
             ))}
         </Container>
       </Container>
