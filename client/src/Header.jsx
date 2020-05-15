@@ -18,7 +18,7 @@ import { Link as RouterLink,  BrowserRouter as Router, Switch, Route } from 'rea
 
 import TeamPage from './TeamPage';
 import Upload from './Upload';
-import Schedule from './Schedule';
+import Schedule from './Schedule/Schedule';
 import Home from './Home';
 
 

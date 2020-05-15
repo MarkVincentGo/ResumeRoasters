@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import CalendarEntry from './CalendarEntry';
-import DateGenerator from './modules/DateGenerator';
+import DateGenerator from '../modules/DateGenerator';
 import Modal from '@material-ui/core/Modal';
 import CalendarChooseTime from './CalendarChooseTime';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
     flexGrow: 1,
-    marginTop: 50,
+    marginTop: 30,
     width: 850,
   },
   title: {
