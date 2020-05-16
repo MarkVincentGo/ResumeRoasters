@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Calendar from './Calendar';
+import TimeConfirm from './TimeConfirm'
 
 const style = {
   container: {
@@ -13,7 +14,7 @@ export default class Schedule extends Component {
   constructor() {
     super();
     this.state = {
-      dateSelected: 'Please Select Date',
+      dateSelected: null,
       timeSelected: 'Please Select Time',
     }
     this.changeScheduledTime = this.changeScheduledTime.bind(this);
@@ -28,12 +29,7 @@ export default class Schedule extends Component {
     return (
       <div style={style.container}>
         <Calendar changeTime={this.changeScheduledTime} />
-        <div style={{
-          height: 500,
-          width: 400,
-          border: '1px solid black',
-          marginTop: 120,
-        }}>{dateSelected} {timeSelected}</div>
+        <TimeConfirm dateSelected={dateSelected} timeSelected={timeSelected}/>
       </div>
     )
   }

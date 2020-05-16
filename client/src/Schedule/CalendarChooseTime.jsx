@@ -53,7 +53,7 @@ const CalendarChooseTime = ({ changeTime, date, modalFn}) => {
   const classes = useStyles();
 
   const handleClickTime = (time) => {
-    changeTime(`${date.month} ${date.day}, ${date.year}`, time);
+    changeTime( date, time);
     modalFn(false)
   }
 
