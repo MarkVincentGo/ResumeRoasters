@@ -1,22 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container'
+
+import PersonCard from './PersonCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     height: 5000,
-  },
-  paper: {
-    height: '25rem',
-    width: '25rem',
-    backgroundImage: props => props.image,
-    backgroundSize: 'cover',
+    marginTop: 50
   },
   control: {
     padding: theme.spacing(2),
@@ -25,24 +19,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SpacingGrid() {
   const classes = useStyles();
-
   return (
-    <Grid container className={classes.root}>
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={10}>
-          {founders.map((value) => {
-            const { position, name, description } = value;
-            const imageStyles = useStyles(value)
-            return (
-              <Grid key={JSON.stringify(value)} item>
-                <Paper className={imageStyles.paper} elevation={7} />
-                <h3>{position} - {name}</h3>
-              </Grid>
-            )}
-          )}
-        </Grid>
-      </Grid>
-    </Grid>
+    <Container className={classes.root}>
+      {founders.map((value) => {
+        const { position, name, description } = value;
+        return (
+          <PersonCard key={JSON.stringify(value)} position={position} name={name} image={value} description={description}/>
+        )}
+      )}
+    </Container>
   );
 };
 

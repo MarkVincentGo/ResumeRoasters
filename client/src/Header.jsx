@@ -16,30 +16,10 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import { Link as RouterLink,  BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import TeamPage from './TeamPage';
+import TeamPage from './Team/TeamPage';
 import Upload from './Upload';
 import Schedule from './Schedule/Schedule';
 import Home from './Home';
-
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-  return (
-      <Typography
-        component="div"
-        role="tabpanel"
-        {...other}
-        >
-        {value === index && <Box p={3}>{children}</Box>}
-      </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,7 +70,7 @@ export default function ScrollableTabsButtonForce() {
             </Tabs>
         </AppBar>
         <Switch>
-          <Route exact path="/schedule">
+          <Route exact path="/team">
             <Home />
           </Route>
           <Route exact path="/services">
@@ -99,10 +79,10 @@ export default function ScrollableTabsButtonForce() {
           <Route exact path="/upload-resume">
               <Upload />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/schedule">
             <Schedule />
           </Route>
-          <Route exact path="/team">
+          <Route exact path="/">
             <TeamPage />
           </Route>
           <Route exact path="/donate">
