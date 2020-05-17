@@ -1,25 +1,34 @@
 import React from 'react';
+import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import { Typography, makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   container: {
     height: 200,
     width: 400,
-    border: '1px solid black',
     marginTop: 120,
     textAlign: 'center',
+    paddingTop: '2%'
   },
   scheduleButton: {
-    width: '90%'
+    width: '90%',
   }
-})
+}));
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const TimeConfirm = ({ dateSelected, timeSelected}) => {
   const classes = useStyles()
+
+  const handleScheduleClick = () => {
+    axios.post('/scheduleTime', {
+      date: dateSelected,
+      time: timeSelected,
+    })
+  }
+
   return (
     <Typography component="div">
       <Paper className={classes.container}>
@@ -32,7 +41,12 @@ const TimeConfirm = ({ dateSelected, timeSelected}) => {
           }
         </h2>
         <h2>{`${timeSelected}`}</h2>
-        <Button className={classes.scheduleButton} variant="contained" color="primary">Schedule</Button>
+        <Button 
+          className={classes.scheduleButton}
+          variant="contained"
+          color="secondary"
+          onClick={handleScheduleClick}
+        >Schedule</Button>
       </Paper>
     </Typography>
   )

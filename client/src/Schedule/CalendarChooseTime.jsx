@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    borderRadius: 10,
   },
   title: {
     display: 'flex',

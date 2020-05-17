@@ -10,18 +10,21 @@ const upload = multer({});
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.post('/upload', upload.any(), (req, res) => {
-  console.log('here')
+app.post('/upload', (req, res) => {
   console.log(req.body)
   res.end()
 })
 app.post('/resume', upload.any(), (req, res) => {
-  console.log(req.files)
     fs.writeFileSync(
     path.join(__dirname, 'Resumes','Mark_Go_Resume.pdf'),
     req.files[0].buffer,
     'binary'
   );
+  res.end()
+})
+
+app.post('/scheduleTime', (req, res) => {
+  console.log(req.body);
   res.end()
 })
 
