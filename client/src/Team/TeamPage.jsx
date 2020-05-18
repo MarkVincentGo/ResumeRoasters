@@ -9,7 +9,7 @@ import PersonCard from './PersonCard';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: 5000,
+    height: 'auto',
     marginTop: 50
   },
   control: {
@@ -21,10 +21,17 @@ export default function SpacingGrid() {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
-      {founders.map((value) => {
+      {founders.map((value, i) => {
         const { position, name, description } = value;
         return (
-          <PersonCard key={JSON.stringify(value)} position={position} name={name} image={value} description={description}/>
+          <PersonCard
+            key={JSON.stringify(value)}
+            position={position}
+            name={name}
+            image={value}
+            description={description}
+            order={i % 2}
+          />
         )}
       )}
     </Container>

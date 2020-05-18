@@ -6,34 +6,49 @@ import { Typography, makeStyles, Container, responsiveFontSizes } from '@materia
 
 const useStyles = makeStyles({
   container: {
-    border: '1px solid black',
     display: 'flex',
-    marginTop: 20
+    marginTop: 20,
+    height: '20rem',
+    alignItems: 'center',
+    padding: 25,
   },
   image: {
-    height: '25rem',
-    width: '25rem',
+    height: '20rem',
+    width: '20rem',
     backgroundImage: props => props.image,
     backgroundSize: 'cover',
   },
   description: {
     textAlign: 'center',
-    fontSize: 20,
-    width: '60%'
+    width: '60%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   }
 })
 
-const PersonCard = ({ position, name, image, description }) => {
+const PersonCard = ({ position, name, image, description, order }) => {
   const classes = useStyles(image)
   return (
     <Typography component="div">
-      <Container className={classes.container}>
-          <Paper className={classes.image} elevation={7} />
-          <Container className={classes.description}>
-            <h3>{position} - {name}</h3>
-            <p>{description}</p>
-          </Container>
-      </Container>
+      <Paper className={classes.container} elevation={7}>
+        {!order ?
+          <>
+            <Paper className={classes.image} elevation={7} />
+            <Container className={classes.description}>
+              <h3 style={{fontSize: 24}}>{name} | {position}</h3>
+              <p style={{fontSize: 16}}>{description}</p>
+            </Container> 
+          </> :
+          <>
+            <Container className={classes.description}>
+              <h3 style={{fontSize: 24}}>{name} | {position}</h3>
+              <p style={{fontSize: 16}}>{description}</p>
+            </Container>
+            <Paper className={classes.image} elevation={7} />
+          </>
+        }
+      </Paper>
     </Typography>
   )
 }
