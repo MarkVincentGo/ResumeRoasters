@@ -20,6 +20,7 @@ import TeamPage from './Team/TeamPage';
 import Upload from './Upload';
 import Schedule from './Schedule/Schedule';
 import Home from './Home';
+import TalkToUs from './TalkToUs';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,6 +91,7 @@ export default function ScrollableTabsButtonForce() {
           </Route>
         </Switch>
       </Router>
+      <TalkToUs />
     </div>
   );
 }

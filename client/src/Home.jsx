@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <Typography component="div">
         <Container maxWidth="lg" style={{ backgroundColor: "#cfe8fc", marginTop: 30 }}>
-        <div style={{}}>Hello</div>
+        <div>Hello</div>
       </Container>
     </Typography>
   )
